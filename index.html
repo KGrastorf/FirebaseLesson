@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="firebaseParty">
+  <head>
+    <meta charset="utf-8">
+    <title>Firebase</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+  </head>
+  <body ng-controller="mainCtrl">
+    <h2>Add New Thing</h2>
+    <form ng-submit="addNewThing(newthing)">
+      <input type="text" ng-model="newthing">
+    </form>
+
+    <div ng-repeat="thing in thingstodo">
+      <h2 ng-hide="editable" ng-dblclick="editable = true">{{thing.$value}} - <span ng-click="deleteThing(thing)">X</span></h2>
+      <form ng-show="editable" ng-submit="editThing(thing); editable=fasle">
+      <input type="text" ng-model="thing.$value">
+
+      </form>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="mainCtrl.js"></script>
+  </body>
+</html>
